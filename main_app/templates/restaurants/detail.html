@@ -10,5 +10,7 @@
       <p>Description: {{ restaurant.description|linebreaks }}</p>
     </div>
   </div>
+  <a href="{% url 'restaurants_update' restaurant.id %}">Edit</a>
+  <a href="{% url 'restaurants_delete' restaurant.id %}">Delete</a>
 </div>
 {% endblock %}
