@@ -2,7 +2,10 @@
 
 {% block content %}
 <div class="container">
-  <h1>Restaurants</h1>
+  <h1 class="center">Restaurants</h1>
+  <div class="right-align">
+    <a href="{% url 'restaurants_create' %}" class="btn">Add Restaurant</a>
+  </div>
 {% for restaurant in restaurants %}
   <a href="{% url 'detail' restaurant.id %}">
     <div class="card">
@@ -13,6 +16,6 @@
       </div>
     </div>
   </a>
+  {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}

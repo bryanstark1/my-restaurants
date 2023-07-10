@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Restaurant
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 def home(request):
@@ -19,3 +20,7 @@ def restaurants_detail(request, restaurant_id):
     return render(request, 'restaurants/detail.html', {
         'restaurant': restaurant
     })
+
+class RestaurantCreate(CreateView):
+    model = Restaurant
+    fields = '__all__'
