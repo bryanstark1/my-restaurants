@@ -8,24 +8,39 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <title>My Restaurants</title>
 </head>
 <body>
   <header>
+
+
     <nav>
       <div class="nav-wrapper">
         <a href="/" class="brand-logo left">myRestaurants</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right hide-on-med-and-up"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-small-and-down">
           <li><a href="/about">About</a></li>
           <li><a href="/restaurants">Restaurants</a></li>
         </ul>
       </div>
     </nav>
+  
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/about">About</a></li>
+      <li><a href="/restaurants">Restaurants</a></li>
+    </ul>
+
   </header>
 
 {% block content %}
 {% endblock %}
 
 </body>
+<script>
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+</script>
 </html>
