@@ -23,11 +23,15 @@ def restaurants_detail(request, restaurant_id):
 
 class RestaurantCreate(CreateView):
     model = Restaurant
-    fields = '__all__'
+    fields = ['name', 'location', 'cuisine', 'description']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class RestaurantUpdate(UpdateView):
     model = Restaurant
-    fields = '__all__'
+    fields = ['name', 'location', 'cuisine', 'description']
 
 class RestaurantDelete(DeleteView):
     model = Restaurant
