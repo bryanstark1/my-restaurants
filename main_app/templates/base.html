@@ -14,24 +14,30 @@
 </head>
 <body>
   <header>
-
-
     <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo left">myRestaurants</a>
+        <a href="{% url 'home' %}" class="brand-logo left">myRestaurants</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right hide-on-med-and-up"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-small-and-down">
-          <li><a href="/about">About</a></li>
-          <li><a href="/restaurants">Restaurants</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'index' %}">Restaurants</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>
-  
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="/about">About</a></li>
-      <li><a href="/restaurants">Restaurants</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'index' %}">Restaurants</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
     </ul>
-
   </header>
 
 {% block content %}
