@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Restaurant
 
-# Create your views here.
+# VIEW FUNCTIONS
 def home(request):
   return render(request, 'home.html')
 
@@ -27,6 +27,8 @@ def restaurants_detail(request, restaurant_id):
     'restaurant': restaurant
   })
 
+
+# CLASS BASED VIEWS
 class RestaurantCreate(LoginRequiredMixin, CreateView):
   model = Restaurant
   fields = ['name', 'location', 'cuisine', 'description']
