@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Restaurant
 
 # VIEW FUNCTIONS
@@ -23,13 +24,9 @@ def restaurants_detail(request, restaurant_id):
     'restaurant': restaurant
   })
 
-<<<<<<< HEAD
-class RestaurantCreate(CreateView):
-=======
-
 # CLASS BASED VIEWS
 class RestaurantCreate(LoginRequiredMixin, CreateView):
->>>>>>> dff23afd9bd1ab2292982379fbbccc1e7cb682c5
+
   model = Restaurant
   fields = ['name', 'location', 'cuisine', 'description']
 
