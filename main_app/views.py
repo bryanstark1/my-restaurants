@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Restaurant
 
-# Create your views here.
+# VIEW FUNCTIONS
 def home(request):
   return render(request, 'home.html')
 
@@ -23,7 +23,13 @@ def restaurants_detail(request, restaurant_id):
     'restaurant': restaurant
   })
 
+<<<<<<< HEAD
 class RestaurantCreate(CreateView):
+=======
+
+# CLASS BASED VIEWS
+class RestaurantCreate(LoginRequiredMixin, CreateView):
+>>>>>>> dff23afd9bd1ab2292982379fbbccc1e7cb682c5
   model = Restaurant
   fields = ['name', 'location', 'cuisine', 'description']
 
