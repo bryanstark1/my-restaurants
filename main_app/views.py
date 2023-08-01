@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Restaurant
 
 # Create your views here.
@@ -13,21 +11,19 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-@login_required
 def restaurants_index(request):
-  restaurants = Restaurant.objects.filter(user=request.user)
+  restaurants = Restaurant.objects.all()
   return render(request, 'restaurants/index.html', {
     'restaurants': restaurants
   })
 
-@login_required
 def restaurants_detail(request, restaurant_id):
   restaurant = Restaurant.objects.get(id=restaurant_id)
   return render(request, 'restaurants/detail.html', {
     'restaurant': restaurant
   })
 
-class RestaurantCreate(LoginRequiredMixin, CreateView):
+class RestaurantCreate(CreateView):
   model = Restaurant
   fields = ['name', 'location', 'cuisine', 'description']
 
@@ -36,11 +32,11 @@ class RestaurantCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class RestaurantUpdate(LoginRequiredMixin, UpdateView):
+class RestaurantUpdate(UpdateView):
   model = Restaurant
   fields = ['name', 'location', 'cuisine', 'description']
 
-class RestaurantDelete(LoginRequiredMixin, DeleteView):
+class RestaurantDelete(DeleteView):
   model = Restaurant
   success_url='/restaurants'
 
